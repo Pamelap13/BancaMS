@@ -5,6 +5,7 @@ import com.nttdata.bancamicroservices.model.domain.Customer;
 import com.nttdata.bancamicroservices.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,7 @@ import reactor.core.publisher.Mono;
 /**
  * Api de clientes.
  */
+@RefreshScope
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/banca/customers")

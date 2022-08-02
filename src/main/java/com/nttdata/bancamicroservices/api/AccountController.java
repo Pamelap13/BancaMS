@@ -4,6 +4,7 @@ import com.nttdata.bancamicroservices.model.domain.Account;
 import com.nttdata.bancamicroservices.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import reactor.core.publisher.Mono;
 /**
  * Api de cuentas.
  */
+@RefreshScope
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/banca/accounts")

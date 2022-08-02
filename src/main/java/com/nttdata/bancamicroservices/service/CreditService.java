@@ -36,10 +36,12 @@ public class CreditService implements ICreditService {
 
   @Override
   public Mono<Credit> createCredit(Credit credit) {
-    if(validateCredit(credit)) {
-      log.info("validar " +HttpStatus.OK);
-    return creditRepository.save(credit); }
-    else return null;
+    if (validateCredit(credit)) {
+      log.info("validar " + HttpStatus.OK);
+      return creditRepository.save(credit);
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -63,7 +65,8 @@ public class CreditService implements ICreditService {
 
   /**
    * Validacion de Creditos.
-   * @param credit
+
+   * @param credit Clase creditosS
    * @return validate
    */
   private boolean validateCredit(Credit credit) {
@@ -74,8 +77,7 @@ public class CreditService implements ICreditService {
       validate = true;
     } else if (credit.getCreditType().equals(CreditType.PERSONAL)) {
       creditRepository.findAll()
-        .any(c -> c.getCustomerId().equals(credit.getCustomerId())
-        && !c.getCreditId().equals(credit.getCreditId()))
+        .any(c -> c.getCustomerId().equals(credit.getCustomerId()))
           .then(Mono.just(validate = false));
     }
     return validate;
