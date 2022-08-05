@@ -39,7 +39,7 @@ public class AccountService implements IAccountService {
 
   * @throws Exception Valida cuenta
   */
-  private void validateAccount(Account account) throws Exception {
+  private void setMaintenance(Account account) throws Exception {
     if (account.getAccountType().equals(AccountType.SAVING)
         || account.getAccountType().equals(AccountType.TIMEDEPOSIT)) {
       account.setMaintenanceFee(false);
@@ -50,7 +50,7 @@ public class AccountService implements IAccountService {
 
   @Override
   public Mono<Account> createAccount(Account account) throws Exception {
-    validateAccount(account);
+    setMaintenance(account);
     return accountRepository.save(account);
   }
 
@@ -60,7 +60,6 @@ public class AccountService implements IAccountService {
                 .flatMap(newAccount -> {
                   newAccount.setBalance(account.getBalance());
                   newAccount.setAccountType(account.getAccountType());
-                  //newAccount.setCustomer(account.getCustomer());
                   return accountRepository.save(newAccount);
                 })
                 .map(updateAccount -> new ResponseEntity<>(updateAccount, HttpStatus.OK));

@@ -21,6 +21,11 @@ public class BootStrapData implements CommandLineRunner {
     this.creditRepository = iCreditRepository;
   }
 
+  /**
+   * Compilacion datos
+   * @param args incoming main method arguments
+   * @throws Exception compile
+   */
   @Override
   public void run(String... args) throws Exception {
 

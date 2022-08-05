@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.swing.text.html.parser.Entity;
+
 /**
  * Servicio operacional de creditos.
  */
@@ -36,12 +38,16 @@ public class CreditService implements ICreditService {
 
   @Override
   public Mono<Credit> createCredit(Credit credit) {
-    if (validateCredit(credit)) {
-      log.info("validar " + HttpStatus.OK);
-      return creditRepository.save(credit);
-    } else {
-      return null;
-    }
+  return validateCredit(credit).
+            flatMap(value ->{
+              if(!value){
+                return creditRepository.save(credit);
+              }
+              else {
+                log.info("Cliente ya cuenta con un credito personal" + HttpStatus.CONTINUE);
+                return Mono.empty();
+              }
+            });
   }
 
   @Override
@@ -66,22 +72,16 @@ public class CreditService implements ICreditService {
   /**
    * Validacion de Creditos.
 
-   * @param credit Clase creditosS
+   * @param credit Clase creditos
    * @return validate
    */
-  private boolean validateCredit(Credit credit) {
-    boolean validate = true;
-    log.info(credit.toString());
-    log.info(credit.getCreditType().toString());
-    if (credit.getCreditType().equals(CreditType.ENTERPRISE)) {
-      validate = true;
-    } else if (credit.getCreditType().equals(CreditType.PERSONAL)) {
-      creditRepository.findAll()
-        .any(c -> c.getCustomerId().equals(credit.getCustomerId()))
-          .then(Mono.just(validate = false));
+  private Mono<Boolean> validateCredit(Credit credit) {
+    Mono<Boolean> exits = Mono.just(true);
+    if (credit.getCreditType().equals(CreditType.PERSONAL)){
+      exits = creditRepository.findAll()
+        .any(c-> c.getCustomerId().equals(credit.getCustomerId()))
+        .switchIfEmpty(Mono.just(false));
     }
-    return validate;
+    return exits;
   }
-
-
 }

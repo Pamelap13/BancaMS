@@ -1,7 +1,6 @@
 package com.nttdata.bancamicroservices.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nttdata.bancamicroservices.model.domain.type.CustomerType;
 import java.util.Date;
 import lombok.AllArgsConstructor;
