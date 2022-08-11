@@ -4,6 +4,7 @@ import com.nttdata.bancamicroservices.model.domain.Account;
 import com.nttdata.bancamicroservices.model.domain.type.AccountType;
 import com.nttdata.bancamicroservices.model.interfaces.IAccountService;
 import com.nttdata.bancamicroservices.model.repository.IAccountRepository;
+import com.nttdata.bancamicroservices.model.repository.ICustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ public class AccountService implements IAccountService {
 
   @Autowired
   private final IAccountRepository accountRepository;
+  private final ICustomerRepository customerRepository;
 
   @Override
   public Flux<Account> getAllAccounts() {
@@ -72,4 +74,9 @@ public class AccountService implements IAccountService {
                 .flatMap(deleteAccount -> accountRepository.delete(deleteAccount)
                         .then(Mono.just(deleteAccount)));
   }
+
+  private void validateRulesAccount(Account account){
+
+  }
+
 }
