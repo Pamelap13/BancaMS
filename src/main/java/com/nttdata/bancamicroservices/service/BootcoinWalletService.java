@@ -9,6 +9,9 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Servicio bootcoin.
+ */
 @EnableBinding(Source.class)
 @Service
 public class BootcoinWalletService {
@@ -17,7 +20,7 @@ public class BootcoinWalletService {
   private Source source;
 
   @SendTo
-  public boolean create (BootcoinWallet bootcoinWallet){
+  public boolean create(BootcoinWallet bootcoinWallet) {
     return source.output().send(MessageBuilder.withPayload(bootcoinWallet).build());
   }
 }

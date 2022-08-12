@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.swing.text.html.parser.Entity;
-
 /**
  * Servicio operacional de creditos.
  */
@@ -38,11 +36,10 @@ public class CreditService implements ICreditService {
 
   @Override
   public Mono<Credit> createCredit(Credit credit) {
-  return validateCredit(credit).
-            flatMap(value ->{
-              if(!value){
-                return creditRepository.save(credit);
-              }
+    return validateCredit(credit)
+      .flatMap(value -> {
+              if (!value) {
+                return creditRepository.save(credit); }
               else {
                 log.info("Cliente ya cuenta con un credito personal" + HttpStatus.CONTINUE);
                 return Mono.empty();
@@ -77,9 +74,9 @@ public class CreditService implements ICreditService {
    */
   private Mono<Boolean> validateCredit(Credit credit) {
     Mono<Boolean> exits = Mono.just(true);
-    if (credit.getCreditType().equals(CreditType.PERSONAL)){
+    if (credit.getCreditType().equals(CreditType.PERSONAL)) {
       exits = creditRepository.findAll()
-        .any(c-> c.getCustomerId().equals(credit.getCustomerId()))
+        .any(c -> c.getCustomerId().equals(credit.getCustomerId()))
         .switchIfEmpty(Mono.just(false));
     }
     return exits;
