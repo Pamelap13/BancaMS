@@ -330,3 +330,12 @@
 2022-08-11 17:44:14,741 DEBUG com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Running with Spring Boot v2.7.1, Spring v5.3.21
 2022-08-11 17:44:14,742 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
 2022-08-11 17:44:29,163 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Started BancaMicroservicesApplication in 18.178 seconds (JVM running for 19.457)
+2022-08-11 20:07:44,716 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Starting BancaMicroservicesApplication using Java 11.0.15 on LIM-DCP03F3 with PID 37732 (C:\Users\ppachaso\Documents\CURSO JAVA BOOTCAMP\BC27\banca-microservices\target\classes started by ppachaso in C:\Users\ppachaso\Documents\CURSO JAVA BOOTCAMP\BC27\banca-microservices)
+2022-08-11 20:07:44,720 DEBUG com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Running with Spring Boot v2.7.1, Spring v5.3.21
+2022-08-11 20:07:44,720 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-11 20:07:57,897 DEBUG com.nttdata.bancamicroservices.api.AccountController [reactor-http-nio-3] Account(accountId=0100002, customerId=00001, accountNumber=00117638922253, balance=1100.0, accountType=SAVING, maintenanceFee=null, monthlyMovement=null)
+2022-08-11 20:07:58,154 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Started BancaMicroservicesApplication in 18.562 seconds (JVM running for 19.858)
+2022-08-11 20:10:26,824 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Starting BancaMicroservicesApplication using Java 11.0.15 on LIM-DCP03F3 with PID 31312 (C:\Users\ppachaso\Documents\CURSO JAVA BOOTCAMP\BC27\banca-microservices\target\classes started by ppachaso in C:\Users\ppachaso\Documents\CURSO JAVA BOOTCAMP\BC27\banca-microservices)
+2022-08-11 20:10:26,827 DEBUG com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Running with Spring Boot v2.7.1, Spring v5.3.21
+2022-08-11 20:10:26,827 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-11 20:10:37,160 INFO com.nttdata.bancamicroservices.BancaMicroservicesApplication [restartedMain] Started BancaMicroservicesApplication in 13.766 seconds (JVM running for 14.568)
